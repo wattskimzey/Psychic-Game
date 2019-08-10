@@ -15,11 +15,13 @@
   <p id="question"></p>
 
   <script>
+// PLEASE NOTE: I'm lost.  so i'm going to attempt to pseudo code this for now, 
+// then i'm going to curl up into the fetal position and attempt to find a happy place.
 
     // VARIABLES
     // ==========================================================================
 
-    // The array of questions for our quiz game.
+    // let's generate a random lower case letter
     function randomString() {
 	var chars = "abcdefghiklmnopqrstuvwxyz";
 	var string_length = 1;
@@ -30,88 +32,109 @@
 	}
 	document.randform.randomfield.value = randomstring;
 }
-
-
-    var questions = [
-      { q: "The sky is blue.", a: "t" },
-      { q: "There are 365 days in a year.", a: "t" },
-      { q: "There are 42 ounces in a pound.", a: "f" },
-      { q: "The Declaration of Independence was created in 1745.", a: "f" },
-      { q: "Bananas are vegetables.", a: "f" }
-    ];
-
     var wins = 0;
     var losses = 0;
-    var guessesLeft = 0;
+    var guessesLeft = 10;
     var guesses = "";
 
-    // FUNCTIONS
-    // ==============================================================================
-
-    // Function to render questions.
-    function renderQuestion() {
-      // If there are still more questions, render the next one.
-      if (questionIndex <= (questions.length - 1)) {
-        document.querySelector("#question").innerHTML = questions[questionIndex].q;
-      }
-      // If there aren't, render the end game screen.
-      else {
-        document.querySelector("#question").innerHTML = "Game Over!";
-        document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
-      }
-    }
-
-    // Function that updates the score...
-    function updateScore() {
-      document.querySelector("#score").innerHTML = "Score: " + score;
-    }
+// so... 
+// you make an intialize function that resets all your variables.  
+// guessesLeft is set to 10 because that's all the guesses I want to give the user. 
+// for guessesLeft > 0
+// call function getLetter that accepts a key, and checks to see
+// if the input is actually a letter (and that it is lower case)
+// if the key that is pressed is equal to the random letter generated in the randomString function
+// then decrement guessesLeft, increment wins, append the guessed letter and a comma and space to guesses
+// display "you won!"
+// if the key pressed is not a match
+// decrement guessesLeft, append guessed letter and a comma/space to guesses
+// when guessesLeft reaches zero, there's no wins
+// thus, increment losses by one, then reset the guessesLeft to 10 and guesses to blank
+// play until your fingers bleed
 
 
-    // MAIN PROCESS
-    // ==============================================================================
 
-    // Calling functions to start the game.
-    renderQuestion();
-    updateScore();
 
-    // When the user presses a key, it will run the following function...
-    document.onkeyup = function(event) {
 
-      // If there are no more questions, stop the function.
-      if (questionIndex === questions.length) {
-        return;
-      }
 
-      // Determine which key was pressed, make it lowercase, and set it to the userInput variable.
-      var userInput = event.key.toLowerCase();
 
-      // Only run this code if "t" or "f" were pressed.
-      if (userInput === "t" || userInput === "f") {
+    // var questions = [
+    //   { q: "The sky is blue.", a: "t" },
+    //   { q: "There are 365 days in a year.", a: "t" },
+    //   { q: "There are 42 ounces in a pound.", a: "f" },
+    //   { q: "The Declaration of Independence was created in 1745.", a: "f" },
+    //   { q: "Bananas are vegetables.", a: "f" }
+    // ];
 
-        // If they guess the correct answer, increase and update score, alert them they got it right.
-        if (userInput === questions[questionIndex].a) {
-          alert("Correct!");
-          score++;
-          updateScore();
-        }
-        // If wrong, alert them they are wrong.
-        else {
-          alert("Wrong!");
-        }
 
-        // Increment the questionIndex variable and call the renderQuestion function.
-        questionIndex++;
-        renderQuestion();
 
-      }
+//     // FUNCTIONS
+//     // ==============================================================================
 
-    };
+//     // Function to render questions.
+//     function renderQuestion() {
+//       // If there are still more questions, render the next one.
+//       if (questionIndex <= (questions.length - 1)) {
+//         document.querySelector("#question").innerHTML = questions[questionIndex].q;
+//       }
+//       // If there aren't, render the end game screen.
+//       else {
+//         document.querySelector("#question").innerHTML = "Game Over!";
+//         document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+//       }
+//     }
 
-  </script>
-<form name="randform">
-    <input type="button" value="Create Random String" onClick="randomString();">&nbsp;
-    <input type="text" name="randomfield" value="">
-    </form>
-</body>
+//     // Function that updates the score...
+//     function updateScore() {
+//       document.querySelector("#score").innerHTML = "Score: " + score;
+//     }
+
+
+//     // MAIN PROCESS
+//     // ==============================================================================
+
+//     // Calling functions to start the game.
+//     renderQuestion();
+//     updateScore();
+
+//     // When the user presses a key, it will run the following function...
+//     document.onkeyup = function(event) {
+
+//       // If there are no more questions, stop the function.
+//       if (questionIndex === questions.length) {
+//         return;
+//       }
+
+//       // Determine which key was pressed, make it lowercase, and set it to the userInput variable.
+//       var userInput = event.key.toLowerCase();
+
+//       // Only run this code if "t" or "f" were pressed.
+//       if (userInput === "t" || userInput === "f") {
+
+//         // If they guess the correct answer, increase and update score, alert them they got it right.
+//         if (userInput === questions[questionIndex].a) {
+//           alert("Correct!");
+//           score++;
+//           updateScore();
+//         }
+//         // If wrong, alert them they are wrong.
+//         else {
+//           alert("Wrong!");
+//         }
+
+//         // Increment the questionIndex variable and call the renderQuestion function.
+//         questionIndex++;
+//         renderQuestion();
+
+//       }
+
+//     };
+
+//   </script>
+// <form name="randform">
+//     <input type="button" value="Create Random String" onClick="randomString();">&nbsp;
+//     <input type="text" name="randomfield" value="">
+//     </form>
+// </body>
 
 </html>
