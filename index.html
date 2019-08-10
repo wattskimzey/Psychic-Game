@@ -9,7 +9,7 @@
 <body>
 
   <h1>The Psychic Game</h1>
-  <h2>Guess which letter I'm thinking of?</h2>
+  <p>Guess which letter I'm thinking of?</p>
 
   <p id="score"></p>
   <p id="question"></p>
@@ -20,6 +20,18 @@
     // ==========================================================================
 
     // The array of questions for our quiz game.
+    function randomString() {
+	var chars = "abcdefghiklmnopqrstuvwxyz";
+	var string_length = 1;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	document.randform.randomfield.value = randomstring;
+}
+
+
     var questions = [
       { q: "The sky is blue.", a: "t" },
       { q: "There are 365 days in a year.", a: "t" },
@@ -28,10 +40,10 @@
       { q: "Bananas are vegetables.", a: "f" }
     ];
 
-    // We start the game with a score of 0.
-    var score = 0;
-    // Variable to hold the index of current question.
-    var questionIndex = 0;
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 0;
+    var guesses = "";
 
     // FUNCTIONS
     // ==============================================================================
@@ -96,7 +108,10 @@
     };
 
   </script>
-
+<form name="randform">
+    <input type="button" value="Create Random String" onClick="randomString();">&nbsp;
+    <input type="text" name="randomfield" value="">
+    </form>
 </body>
 
 </html>
